@@ -1,6 +1,8 @@
 package practice_1;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Practice1 {
 
@@ -68,6 +70,9 @@ public class Practice1 {
 	
 	public static void ex6() {
 		
+		JTextArea textBox = new JTextArea(2,2);
+		JScrollPane nombre = new JScrollPane(textBox);
+		
 		int num1 = Integer.parseInt(JOptionPane.showInputDialog("Ingresa un numero"));
 		boolean primo = true;
 		
@@ -75,18 +80,22 @@ public class Practice1 {
 			
 			if(num1%i==0) {
 				if(primo==true) {
-					JOptionPane.showMessageDialog(null, "El numero no es primo");
+					textBox.setText("El numero no es primos sus divisores son: \n");
+
 					primo=false;
 					
 				}
+				
+				textBox.append(i+"\n");
 
-				JOptionPane.showMessageDialog(null, "El numero es dvisible por: "+i);
 			}
 		}
 		
 		if(primo==true) {
 			JOptionPane.showMessageDialog(null, "El numero es primo");
-			
+		}else {
+			JOptionPane.showMessageDialog(null, nombre);
+
 		}
 		
 		
