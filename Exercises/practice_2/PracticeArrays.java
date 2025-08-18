@@ -1,6 +1,7 @@
 package practice_2;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -14,7 +15,7 @@ public class PracticeArrays {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
-        ex5();
+        ex38();
 
     }
 
@@ -51,6 +52,8 @@ public class PracticeArrays {
 
 
     private static void ex2() {
+    	    	
+    	
 
         double a = Double.parseDouble(JOptionPane.showInputDialog("Inrese a: "));
         double b = Double.parseDouble(JOptionPane.showInputDialog("Inrese b: "));
@@ -298,6 +301,95 @@ public class PracticeArrays {
 
 
     }
+    
+    private static void ex38() {
+    	Empleado e1 = new Empleado("Pedro", "Pascal", 2);
+    	Empleado e2 = new Empleado("Tomas", "Borghi", 100);
+    	Empleado e3 = new Empleado("Lio", "Messi", 1000);
+    	
+    	List<Empleado> listEmpleados = new ArrayList<>(List.of(e1,e2,e3));
+
+    	listEmpleados.forEach(e -> e.mostrarResumenSueldo());
+
+    }
+    
+    public static class Empleado{
+
+
+
+    	private String nombre;
+    	private String apellido;
+    	private int horasTrabajadas;
+    	private ResumenSueldo resumenSueldo;
+    	
+
+    	
+    	
+    	public Empleado(String nombre, String apellido, int horasTrabajadas) {
+    		this.nombre = nombre;
+    		this.apellido = apellido;
+    		this.horasTrabajadas = horasTrabajadas;
+    		this.resumenSueldo = new ResumenSueldo(horasTrabajadas);
+    	}
+    	
+    	public void mostrarResumenSueldo() {
+    		
+    		System.out.println("Empleado: "+nombre);
+    		System.out.println("Horas Trabajadas: "+horasTrabajadas);
+    		System.out.println("Horas simples: "+resumenSueldo.horasSimple);
+    		System.out.println("Horas excedentes: "+resumenSueldo.horasExcedentes);
+    		System.out.println("Sueldo basico: "+resumenSueldo.sueldoBasico);
+    		System.out.println("Descuento: "+resumenSueldo.descuentos);
+    		System.out.println("Premio: "+resumenSueldo.premio);
+    		System.out.println("Sueldo total: "+resumenSueldo.sueldo);
+
+
+    	}
+
+    }
+    
+    
+    public static class ResumenSueldo{
+    	
+    	private final int PAGO_HORA = 25;
+    	private final int PAGO_HORA_EXCEDENTE = 30;
+    	private final double DESCUENTO = 0.195;
+    	private final int BONIFICACION = 100;
+    	
+    	private int horasSimple;
+    	private int horasExcedentes;
+    	private double sueldoBasico;
+    	private double descuentos;
+    	private double premio;
+    	private double sueldo;
+    	
+    	public ResumenSueldo(int horasTrabajadas) {
+    		setHoras(horasTrabajadas);
+    		this.sueldoBasico = (PAGO_HORA*horasSimple) + (PAGO_HORA_EXCEDENTE*horasExcedentes);
+    		this.descuentos = horasSimple * DESCUENTO;
+    		this.premio = horasSimple == 40 ? BONIFICACION : 0;
+    		this.sueldo = calcularSueldo();
+    		
+    	}
+    	
+    	private double calcularSueldo() {
+    		
+    		return sueldoBasico - descuentos + premio;
+		}
+
+		private void setHoras(int horasTrabajadas) {
+    		
+    		if(horasTrabajadas<=40) {
+    			horasSimple = horasTrabajadas;
+    			horasExcedentes = 0;
+    		}else {
+    			horasSimple=40;
+    			horasExcedentes = horasTrabajadas -40;
+    		}
+    		
+    	}
+    	
+    } 
 
 
 }
