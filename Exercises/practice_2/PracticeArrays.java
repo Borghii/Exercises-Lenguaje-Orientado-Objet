@@ -1,4 +1,7 @@
 package practice_2;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -174,5 +177,123 @@ public class PracticeArrays {
 
 		
 	}
+	
+	private static void ex5() {
+		
+		List<Alumno> alumnos = new ArrayList<>();
+		
+		List<Falta> faltasAlumno = new ArrayList<>();
+		
+		String nombre = JOptionPane.showInputDialog("Inrese el nombre del alumno: ");
+		String curso = JOptionPane.showInputDialog("Inrese el curso: ");
+		String division = JOptionPane.showInputDialog("Inrese la division: ");
+		
+		int faltas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de faltas: "));
+
+		for(int i=0; i<faltas; i++) {
+			
+			String justificada = JOptionPane.showInputDialog("Falta justificada? (si-no)");
+						
+			if(justificada.equals("si")) {			
+				faltasAlumno.add(new Falta(true));
+			}else {
+				faltasAlumno.add(new Falta(false));
+			}
+			
+		}
+		
+		alumnos.add(new Alumno(nombre,curso,division,faltasAlumno));
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+		
+		
+	}
+	
+	public static class Alumno{
+		
+		private String nombre;
+		private String curso;
+		private String division;
+		private List<Falta> faltas;
+		private String estado;
+		
+		
+		
+		
+		
+		public Alumno(String nombre, String curso, String division, List<Falta> faltas) {
+			this.nombre = nombre;
+			this.curso = curso;
+			this.division = division;
+			this.faltas = faltas;
+			this.estado = obtenerEstado();
+		}
+		
+		public String obtenerEstado() {
+			
+			if(faltas.size()<15) {
+				return "Regular";
+			}
+			
+		}
+		
+		
+		public String getNombre() {
+			return nombre;
+		}
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+		public String getCurso() {
+			return curso;
+		}
+		public void setCurso(String curso) {
+			this.curso = curso;
+		}
+		public String getDivision() {
+			return division;
+		}
+		public void setDivision(String division) {
+			this.division = division;
+		}
+		public List<Falta> getFaltas() {
+			return faltas;
+		}
+		public void setFaltas(List<Falta> faltas) {
+			this.faltas = faltas;
+		}
+		
+		
+		
+	}
+	
+	public static class Falta{
+		
+		private boolean justificada;
+		
+		public Falta(boolean justificada) {
+			this.justificada = justificada;
+		}
+
+		public boolean isJustificada() {
+			return justificada;
+		}
+
+		public void setJustificada(boolean justificada) {
+			this.justificada = justificada;
+		}
+		
+	
+	}
+
 
 }
