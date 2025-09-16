@@ -14,13 +14,19 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.UserController;
-import service.InvalidPasswordException;
-import service.UserNotFoundException;
+import exception.InvalidPasswordException;
+import exception.UserNotFoundException;
 
 public class LoginView extends JFrame{
 	
 	private UserController userController;
 	
+	JTextField usuario = new JTextField(20);
+	JPasswordField pass = new JPasswordField(20);
+	JLabel etiquetaUsuario = new JLabel ("Usuario: ");
+	JLabel etiquetaContrasenia = new JLabel ("Contraseña: ");
+	JButton ingresar = new JButton("Ingresar");
+	JButton borrar = new JButton("Borrar");
 	
 	
 	
@@ -36,12 +42,7 @@ public class LoginView extends JFrame{
 		gui();
 	}
 
-	JTextField usuario = new JTextField(20);
-	JPasswordField pass = new JPasswordField(20);
-	JLabel etiquetaUsuario = new JLabel ("Usuario: ");
-	JLabel etiquetaContrasenia = new JLabel ("Contraseña: ");
-	JButton ingresar = new JButton("Ingresar");
-	JButton borrar = new JButton("Borrar");
+	
 
 	
 	public void gui() 

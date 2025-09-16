@@ -3,8 +3,8 @@ package controller;
 
 import java.util.logging.Logger;
 
-import service.InvalidPasswordException;
-import service.UserNotFoundException;
+import exception.InvalidPasswordException;
+import exception.UserNotFoundException;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -23,7 +23,7 @@ public class UserController {
 
 
 
-	public boolean login(String user, String password) throws UserNotFoundException, InvalidPasswordException {
+	public boolean login(String user, String password){
 		return userService.authenticate(user, password);
 		
 	}

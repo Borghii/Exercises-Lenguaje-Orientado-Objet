@@ -1,6 +1,8 @@
 package service;
 
 import entity.User;
+import exception.InvalidPasswordException;
+import exception.UserNotFoundException;
 import repository.UserRepository;
 
 public class UserServiceImpl implements UserService {
@@ -15,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public boolean authenticate(String user, String pass) throws UserNotFoundException, InvalidPasswordException {
+	public boolean authenticate(String user, String pass){
 		
 		 User user2 =  userRepository.findByUsername(user)
 				 .orElseThrow(()-> new UserNotFoundException("The user doesn't exist"));
